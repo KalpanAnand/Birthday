@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;900&family=Kalam:wght@400&display=swap');
+
+:root {
+  --bg: #111111;
+  --text: #f0f0f0;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
