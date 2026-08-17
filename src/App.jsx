@@ -127,7 +127,7 @@ function App() {
         "Accept": "application/json"
       },
       body: JSON.stringify({ 
-        message: "Yay! T kutrinmel sastha completely visited the website and clicked the final button!",
+        message: "Yay! T kuntrinmel sastha completely visited the website and clicked the final button!",
         timestamp: new Date().toLocaleString(),
         subject: "New Birthday Website Completion!"
       })
@@ -326,7 +326,7 @@ function App() {
         <div className="stage-2-fullscreen fade-in-slow">
           <div className="decorated-wish blur-reveal delay-1">
             <h2 className="elegant-wishes">Happy Birthday</h2>
-            <h1 className="name-elegant">T kutrinmel sastha</h1>
+            <h1 className="name-elegant">T kuntrinmel sastha</h1>
             <div className="milestone-container">
               <span className="line"></span>
               <h3 className="milestone-text">25th Birthday</h3>
