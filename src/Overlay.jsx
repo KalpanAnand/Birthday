@@ -11,40 +11,45 @@ export default function Overlay({
   lastMemoryUrl
 }) {
   
+  const [introStep, setIntroStep] = useState(0); // 0: unstarted, 1: message, 2: instruction, 3: done
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [introFinished, setIntroFinished] = useState(false);
 
-  // Intro message timer (14s)
+  // Manage Intro Sequence within 14s
   useEffect(() => {
     if (!hasStarted) return;
-    const t = setTimeout(() => {
-      setIntroFinished(true);
-    }, 14000);
-    return () => clearTimeout(t);
+    
+    setIntroStep(1); // Show message first
+    
+    // After 6s, switch to instructions
+    const t1 = setTimeout(() => {
+      setIntroStep(2);
+    }, 6000);
+    
+    // After 12s, hide instructions if not already scrolled
+    const t2 = setTimeout(() => {
+      setIntroStep(3);
+    }, 12000);
+    
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [hasStarted]);
 
-  // Track if user has scrolled to hide the indicator
+  // Track if user has scrolled
   useEffect(() => {
     if (!hasStarted) return;
     
     const handleScroll = () => {
       setHasScrolled(true);
+      if (introStep === 2) setIntroStep(3); // Hide instructions on scroll
     };
     
     window.addEventListener('wheel', handleScroll);
     window.addEventListener('touchmove', handleScroll);
     
-    // Auto-hide after 8 seconds just in case
-    const timer = setTimeout(() => {
-      setHasScrolled(true);
-    }, 8000);
-    
     return () => {
       window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('touchmove', handleScroll);
-      clearTimeout(timer);
     };
-  }, [hasStarted]);
+  }, [hasStarted, introStep]);
 
   // Handle Esc key to close active memory
   useEffect(() => {
@@ -156,16 +161,17 @@ export default function Overlay({
       </AnimatePresence>
 
       <AnimatePresence>
-        {hasStarted && !introFinished && (
+        {introStep === 1 && (
           <motion.div
-            initial={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 1 }}
             style={{
               position: 'absolute',
               top: 0, left: 0, right: 0, bottom: 0,
               backgroundColor: 'black',
-              zIndex: 90, // Covers tunnel, but under 'isFinished' collage
+              zIndex: 90, // Covers tunnel
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -176,7 +182,7 @@ export default function Overlay({
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 2 }}
+              transition={{ delay: 0.5, duration: 1 }}
               style={{
                 color: 'white',
                 fontSize: '1.4rem',
@@ -194,12 +200,12 @@ export default function Overlay({
       </AnimatePresence>
 
       <AnimatePresence>
-        {hasStarted && !isFinished && !hasScrolled && !activeMemory && (
+        {introStep === 2 && !hasScrolled && !activeMemory && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 0.5 }}
             style={{
               position: 'absolute',
               bottom: '10%',
@@ -263,7 +269,7 @@ export default function Overlay({
                 src={mem.url}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 2 + (Math.random() * 3), duration: 2 }} // Random stagger effect
+                transition={{ delay: 0.5 + (Math.random() * 1.5), duration: 0.8 }} // Much faster stagger effect
                 style={{
                   width: 'calc(100vw / 10)', // approx 10 cols
                   height: 'calc(100vh / 9)', // approx 9 rows
@@ -278,7 +284,7 @@ export default function Overlay({
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 5.5, duration: 2 }}
+              transition={{ delay: 2.5, duration: 1 }}
               style={{
                 position: 'absolute',
                 top: 0, left: 0, right: 0, bottom: 0,
@@ -292,7 +298,7 @@ export default function Overlay({
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 6.5, duration: 2 }}
+              transition={{ delay: 3.2, duration: 1.5 }}
               style={{
                 position: 'absolute',
                 zIndex: 110,

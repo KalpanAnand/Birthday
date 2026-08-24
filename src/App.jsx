@@ -35,21 +35,21 @@ const captions = [
   { heading: "You are my irreplaceable fighting partner. ⚔️🤝", body: "No matter how much we fight, I’d never want to fight life without you. 🌟" },
   { heading: "You are my extraordinary monkey. 🐵✨", body: "Your clever mind always finds a way, even when things seem impossible. 🧠" },
   { heading: "You are my ice cream producer. 🍦😊", body: "Some bonds are too precious to ever be replaced. ✨" },
-  { heading: "You are my favorite person. 🫶🌻", body: "No matter how much life changes, that will never change. ✨" },
-  { heading: "You are my personal diary. 📖💜", body: "You know the version of me that the world has never seen. 🥹" },
+  { heading: "You are my safe place to talk. 🫂💭", body: "You are the person I can tell everything to without ever thinking twice. 💬" },
+  { heading: "You are my personal diary in human form. 📖🫶🏻", body: "You know the version of me that the world has never seen. 🥹" },
   { heading: "You are my One and Only Exception. 🌟", body: "No one can affect me the way you do. 🫶 No one can hurt me, heal me, understand me, and handle me all at the same time like you. ✨" },
   { heading: "You are the only person who has the authority to correct me. 🌱", body: "Maybe not immediately, but it always makes me think. 💭" },
   { heading: "You are my silent hero. 🦸‍♂️✨", body: "You don’t express your love with words, but your actions have always said enough. 🌻" },
   { heading: "You are my greatest blessing. 🍀✨", body: "Some blessings come as miracles—mine came as a brother. 🌟" },
   { heading: "You are the hand I’ll never be afraid to hold. 🤝✨", body: "If the whole world stands against me, I know you’ll still stand beside me. 🌎" },
   { heading: "You are my forever protector. 🛡️✨", body: "Because of you, I’ve never been afraid to face the world. 🌍" },
-  { heading: "You are the shield around my dreams. 🛡️💫", body: "You never let fear steal them away. ✨" },
+  { heading: "You are the shield around my dreams. 🛡️💫", body: "You always remind me that I’m capable of more than I think. 🌱" },
   { heading: "You are the quiet strength behind me. 🌙🫶", body: "Even when I can’t see it, I know you’re always there. ✨" },
   { heading: "You are the hands that never let me fall. 🤲🌻", body: "Even when life pushed me down, you held me up. 🌱" },
   { heading: "You are my guardian through every season of life. 🍂🌸", body: "Your presence has always been my greatest comfort. 🫂" },
   { heading: "You are my guiding star. ⭐✨", body: "Your motivation gave me wings when I was afraid to fly. 🪽 Your motivation has been the light that led me to where I am today. 🌟" },
-  { heading: "You are the spark that keeps my dreams alive. 🔥✨", body: "You always remind me that I’m capable of more than I think. 🌱" },
-  { heading: "You are the belief that lives within me. 🌟", body: "Because of you, I face the world with confidence. 💪" },
+  { heading: "You are the only person I’m afraid of. 🫣💗", body: "Because your words matter to me more than anyone else’s. 🥹🫶🏻" },
+  { heading: "You are my forever emergency contact. 📞🆘💙", body: "No matter what happens, you’ll always be the first person I’ll call. 🥹🫂✨" },
   { heading: "You are my inspiration. 🚀✨", body: "You prove that with determination and hard work, anything is possible. 🌻" },
   { heading: "You are the brother of a little princess. 👑✨", body: "A princess may grow up, but she’ll always find comfort in her first hero. 🏰" }
 ];
@@ -116,6 +116,7 @@ function App() {
 
   // Final Action State
   const [showFinalPopup, setShowFinalPopup] = useState(false)
+  const [showSpecialMessage, setShowSpecialMessage] = useState(false)
 
   const handleFinalClick = () => {
     setShowFinalPopup(true);
@@ -286,26 +287,36 @@ function App() {
 
       {stage === 0 && (
         <div className="stage-0 fade-in-slow" style={{ width: '100%', display: 'flex', justifyContent: 'center', zIndex: 1 }}>
-          <div className="login-box">
-            <Lock className="lock-icon" size={40} />
-            <h2 className="elegant-wishes">Welcome</h2>
-            <p className="touch-text" style={{ marginBottom: '30px' }}>Please login to continue</p>
+          <div className="login-box" style={{ background: 'rgba(20, 30, 45, 0.7)', backdropFilter: 'blur(15px)', borderRadius: '25px', padding: '50px 40px', border: '1px solid rgba(255, 182, 193, 0.3)', boxShadow: '0 15px 35px rgba(0,0,0,0.5)', textAlign: 'center', maxWidth: '400px', width: '90%' }}>
+            <div style={{ marginBottom: '20px', color: '#FFB6C1', display: 'flex', justifyContent: 'center' }}>
+              <Star size={50} strokeWidth={1} style={{ filter: 'drop-shadow(0 0 10px rgba(255,182,193,0.8))' }} />
+            </div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.5rem', color: '#fff', marginBottom: '10px', textShadow: '0 2px 5px rgba(0,0,0,0.5)' }}>A Special Invitation</h2>
+            <p style={{ color: '#AEE4E1', marginBottom: '40px', fontStyle: 'italic', fontSize: '1.1rem' }}>Enter your credentials to unlock your surprises...</p>
             <form onSubmit={handleLogin}>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className={`password-input ${loginError ? 'error-shake' : ''}`}
-                placeholder="Enter Name..."
+                placeholder="Enter Your Name"
+                style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', borderRadius: '30px', padding: '15px 20px', width: '100%', marginBottom: '20px', fontSize: '1rem', outline: 'none', transition: 'all 0.3s' }}
+                onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.borderColor = 'rgba(255,182,193,0.5)' }}
+                onBlur={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)' }}
               />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className={`password-input ${loginError ? 'error-shake' : ''}`}
-                placeholder="Enter Password..."
+                placeholder="Enter The Secret Password"
+                style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', borderRadius: '30px', padding: '15px 20px', width: '100%', marginBottom: '30px', fontSize: '1rem', outline: 'none', transition: 'all 0.3s' }}
+                onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.borderColor = 'rgba(255,182,193,0.5)' }}
+                onBlur={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)' }}
               />
-              <button type="submit" className="continue-btn" style={{ width: '100%' }}>Login</button>
+              <button type="submit" style={{ background: 'linear-gradient(45deg, #FFB6C1, #87CEFA)', color: '#111', fontWeight: 'bold', border: 'none', borderRadius: '30px', padding: '15px 20px', width: '100%', fontSize: '1.1rem', cursor: 'pointer', boxShadow: '0 5px 15px rgba(135,206,250,0.3)', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+                Unlock Memories
+              </button>
             </form>
           </div>
         </div>
@@ -347,32 +358,77 @@ function App() {
           )}
           {secretView === 'menu' && (
             <div className="secret-content fade-in-slow" style={{ width: '100%', maxWidth: '1000px' }}>
-              <h1 className="elegant-greeting secret-title" style={{ marginBottom: '40px', color: '#FFB6C1', fontSize: '3rem', textAlign: 'center', textShadow: '0 0 20px rgba(255, 182, 193, 0.6)' }}>A Special Gift</h1>
-              <div className="hub-grid">
-                <div className="hub-card pop-in delay-100" onClick={() => setSecretView('notes')}>
-                  <div className="hub-icon-wrapper"><List size={32} /></div>
-                  <h3>25 Sticky Notes</h3>
-                  <p className="touch-text" style={{ fontSize: '0.9rem', marginTop: '10px' }}>Find all the hidden stars</p>
+              <h1 className="elegant-greeting secret-title" style={{ marginBottom: '10px', color: '#FFB6C1', fontSize: '3rem', textAlign: 'center', textShadow: '0 0 20px rgba(255, 182, 193, 0.6)' }}>A Special Gift</h1>
+              <p className="fade-in-delay pop-in" style={{ textAlign: 'center', color: '#E0F2F1', fontSize: '1.3rem', fontFamily: "'Playfair Display', serif", fontStyle: 'italic', marginBottom: '40px', letterSpacing: '1px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                Click on each polaroid below to unlock your surprises! ✨
+              </p>
+              <div className="hub-grid" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px', marginTop: '20px' }}>
+                
+                {/* Card 1 */}
+                <div className="scrapbook-card pop-in delay-100" onClick={() => setSecretView('notes')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-3deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-3deg)'}>
+                  {/* Tape */}
+                  <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%) rotate(-2deg)', width: '80px', height: '25px', background: 'rgba(255, 255, 255, 0.6)', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
+                  <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', position: 'relative', border: '1px solid #eee' }}>
+                    <img src="/front/thumb1.png" alt="Sticky Notes" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                    <h3 style={{ fontFamily: "'Alex Brush', cursive", fontSize: '2.2rem', color: '#333', margin: 0, fontWeight: 'normal' }}>25 Sticky Notes</h3>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.95rem', color: '#666', fontStyle: 'italic', margin: '5px 0 0 0' }}>Find all the hidden stars ✨</p>
+                  </div>
+                  {/* Doodles */}
+                  <div style={{ position: 'absolute', bottom: '15px', right: '15px', fontSize: '1.2rem', opacity: 0.7 }}>⭐</div>
                 </div>
-                <div className="hub-card pop-in delay-150" onClick={() => { setSecretView('tunnel'); setIsTunnelFinished(false); setIsTunnelStarted(false); }}>
-                  <div className="hub-icon-wrapper"><Compass size={32} /></div>
-                  <h3>Memory Tunnel</h3>
-                  <p className="touch-text" style={{ fontSize: '0.9rem', marginTop: '10px' }}>A 3D Journey</p>
+
+                {/* Card 2 */}
+                <div className="scrapbook-card pop-in delay-150" onClick={() => { setSecretView('tunnel'); setIsTunnelFinished(false); setIsTunnelStarted(false); }} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(2deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(2deg)'}>
+                  <div style={{ position: 'absolute', top: '-10px', right: '10px', transform: 'rotate(45deg)', width: '60px', height: '20px', background: 'rgba(255, 228, 196, 0.8)', boxShadow: '0 1px 2px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
+                  <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
+                    <img src="/front/thumb2.png" alt="Memory Tunnel" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                    <h3 style={{ fontFamily: "'Alex Brush', cursive", fontSize: '2.2rem', color: '#333', margin: 0, fontWeight: 'normal' }}>Memory Tunnel</h3>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.95rem', color: '#666', fontStyle: 'italic', margin: '5px 0 0 0' }}>A 3D Journey 🌌</p>
+                  </div>
+                  <div style={{ position: 'absolute', top: '10px', left: '10px', fontSize: '1.5rem', opacity: 0.6 }}>💫</div>
                 </div>
-                <div className="hub-card pop-in delay-200" onClick={() => setSecretView('photos')}>
-                  <div className="hub-icon-wrapper"><Image size={32} /></div>
-                  <h3>Photos Together</h3>
-                  <p className="touch-text" style={{ fontSize: '0.9rem', marginTop: '10px' }}>Our best memories</p>
+
+                {/* Card 3 */}
+                <div className="scrapbook-card pop-in delay-200" onClick={() => setSecretView('photos')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-4deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-4deg)'}>
+                  <div style={{ position: 'absolute', top: '-12px', left: '30%', transform: 'rotate(-5deg)', width: '70px', height: '25px', background: 'rgba(173, 216, 230, 0.6)', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
+                  <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
+                    <img src="/front/thumb3.png" alt="Photos Together" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                    <h3 style={{ fontFamily: "'Alex Brush', cursive", fontSize: '2.2rem', color: '#333', margin: 0, fontWeight: 'normal' }}>Photos Together</h3>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.95rem', color: '#666', fontStyle: 'italic', margin: '5px 0 0 0' }}>Our best memories 📸</p>
+                  </div>
+                  <div style={{ position: 'absolute', bottom: '20px', left: '10px', fontSize: '1.2rem', opacity: 0.7 }}>🤍</div>
                 </div>
-                <div className="hub-card pop-in delay-300" onClick={() => setSecretView('screenshots')}>
-                  <div className="hub-icon-wrapper"><Image size={32} /></div>
-                  <h3>Hanging Polaroids</h3>
-                  <p className="touch-text" style={{ fontSize: '0.9rem', marginTop: '10px' }}>Memories on Strings</p>
+
+                {/* Card 4 */}
+                <div className="scrapbook-card pop-in delay-300" onClick={() => setSecretView('screenshots')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(3deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(3deg)'}>
+                  <div style={{ position: 'absolute', top: '-10px', right: '30%', transform: 'rotate(8deg)', width: '80px', height: '22px', background: 'rgba(255, 182, 193, 0.6)', boxShadow: '0 1px 2px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
+                  <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
+                    <img src="/front/thumb4.png" alt="Hanging Polaroids" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                    <h3 style={{ fontFamily: "'Alex Brush', cursive", fontSize: '2.2rem', color: '#333', margin: 0, fontWeight: 'normal' }}>Hanging Polaroids</h3>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.95rem', color: '#666', fontStyle: 'italic', margin: '5px 0 0 0' }}>Memories on Strings 🎞️</p>
+                  </div>
+                  <div style={{ position: 'absolute', top: '15px', right: '15px', fontSize: '1.2rem', opacity: 0.8 }}>🌸</div>
                 </div>
-                <div className="hub-card pop-in delay-400" onClick={() => { setSecretView('video'); setIsVideoEnded(false); }}>
-                  <div className="hub-icon-wrapper"><Video size={32} /></div>
-                  <h3>My Video</h3>
-                  <p className="touch-text" style={{ fontSize: '0.9rem', marginTop: '10px' }}>A special message</p>
+
+                {/* Card 5 */}
+                <div className="scrapbook-card pop-in delay-400" onClick={() => { setSecretView('video'); setIsVideoEnded(false); }} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-2deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-2deg)'}>
+                  <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%) rotate(3deg)', width: '75px', height: '25px', background: 'rgba(240, 230, 140, 0.7)', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
+                  <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
+                    <img src="/front/thumb5.png" alt="My Video" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                    <h3 style={{ fontFamily: "'Alex Brush', cursive", fontSize: '2.2rem', color: '#333', margin: 0, fontWeight: 'normal' }}>My Video</h3>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.95rem', color: '#666', fontStyle: 'italic', margin: '5px 0 0 0' }}>A special message 💌</p>
+                  </div>
+                  <div style={{ position: 'absolute', bottom: '15px', right: '15px', fontSize: '1.4rem', opacity: 0.7 }}>💭</div>
                 </div>
               </div>
               
@@ -621,36 +677,62 @@ function App() {
                 <div className="video-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', padding: '20px', paddingBottom: '100px', overflowY: 'auto', maxHeight: '80vh' }}>
                   <h2 className="elegant-wishes" style={{ marginBottom: '20px' }}>My Special Message</h2>
                   
-                  <div style={{ marginBottom: '20px', textAlign: 'center' }}>
-                    <a href="https://drive.google.com/file/d/1koaq11XsSmYZiKHZvLRZ_uDNbjOfRUt1/view?usp=sharing" target="_blank" rel="noopener noreferrer" style={{ padding: '12px 25px', background: 'rgba(63, 181, 177, 0.2)', color: '#AEE4E1', borderRadius: '25px', textDecoration: 'none', border: '1px solid #3FB5B1', display: 'inline-block', fontWeight: 'bold' }}>
-                      Click here to open Video if it doesn't load below
+                  <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '20px', flexWrap: 'wrap' }}>
+                    <a 
+                      href="https://drive.google.com/file/d/1koaq11XsSmYZiKHZvLRZ_uDNbjOfRUt1/view?usp=sharing" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ padding: '15px 35px', fontSize: '1.2rem', borderRadius: '30px', background: 'linear-gradient(45deg, #FFB6C1, #87CEFA)', color: '#111', fontWeight: 'bold', textDecoration: 'none', boxShadow: '0 5px 15px rgba(135, 206, 250, 0.4)', transition: 'all 0.3s' }}
+                      onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(135, 206, 250, 0.6)'; }}
+                      onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 5px 15px rgba(135, 206, 250, 0.4)'; }}
+                    >
+                      Watch Video 🎥
                     </a>
+                    <button 
+                      onClick={() => setShowSpecialMessage(!showSpecialMessage)} 
+                      style={{ padding: '15px 35px', fontSize: '1.2rem', borderRadius: '30px', background: 'linear-gradient(45deg, #3FB5B1, #2C9692)', color: 'white', fontWeight: 'bold', border: 'none', cursor: 'pointer', boxShadow: '0 5px 15px rgba(63, 181, 177, 0.4)', transition: 'all 0.3s' }}
+                      onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(63, 181, 177, 0.6)'; }}
+                      onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 5px 15px rgba(63, 181, 177, 0.4)'; }}
+                    >
+                      {showSpecialMessage ? 'Hide Message 💌' : 'Read My Special Message 💌'}
+                    </button>
                   </div>
 
-                  <div style={{ position: 'relative', width: '100%', maxWidth: '600px', height: '400px', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', border: '2px solid rgba(174, 228, 225, 0.4)' }}>
-                    <iframe 
-                      src="https://drive.google.com/file/d/1koaq11XsSmYZiKHZvLRZ_uDNbjOfRUt1/preview" 
-                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                      allow="autoplay"
-                      title="Google Drive Video"
-                    ></iframe>
-                  </div>
-
-                  <div className="fade-in-slow" style={{ marginTop: '40px', padding: '30px', background: 'rgba(255,255,255,0.05)', borderRadius: '16px', border: '1px solid rgba(174, 228, 225, 0.2)', color: '#E0F2F1', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'left', fontFamily: 'serif' }}>
+                  {showSpecialMessage && (
+                    <div className="fade-in-slow pop-in" style={{ marginTop: '30px', padding: '30px', background: 'linear-gradient(rgba(10, 15, 25, 0.6), rgba(10, 15, 25, 0.8)), url(/kalps.png) top center/cover no-repeat', backgroundAttachment: 'scroll', borderRadius: '25px', border: '1px solid rgba(174, 228, 225, 0.3)', color: '#F8F9FA', fontSize: '1.05rem', lineHeight: '1.6', textAlign: 'center', fontFamily: "'Playfair Display', serif", textShadow: '0 2px 4px rgba(0,0,0,0.9)', boxShadow: '0 15px 40px rgba(0,0,0,0.7)', maxWidth: '800px', width: '100%', maxHeight: '75vh', overflowY: 'auto' }}>
                       <audio src="/bgm.m4a" autoPlay loop />
                       <p style={{ marginBottom: '15px' }}>Enakku ithukku mela enna ah sollanum nu theriyala…</p>
                       <p style={{ marginBottom: '15px' }}>Ana nee yeppothume ennaiya easy ah thukki poduraaa....<br />Raja vaachi problem varum pothu lam evlo times nee easy ah thukki poda number ah delete panirukka but ennala maddum than mudiyala nee enna pannalum again and again nan than unnaiya vidama pudichi vachidu irukennnnn</p>
-                      <p style={{ marginBottom: '15px' }}>Yeppothume unakku nan unnoda papa nu thonatha sasthu maaa<br />Nan yeppothume unnaiya ennoda kuda poranthathu mathiri than pappen but unakku antha mathiri ennaiya patha thonathaaaa.....</p>
-                      <p style={{ marginBottom: '15px' }}>Easy ah thukki podura alavukku than nan pasam unmela vachanaaa<br />Ivlo pasham vachathu nan ivlokku irunthu aluvurathuka sasthu maaa.....</p>
+                      <p style={{ marginBottom: '15px' }}>Yeppothume unakku nan unnoda papa nu thonatha sasthu maaa…?</p>
+                      <p style={{ marginBottom: '15px' }}>Nan yeppothume unnaiya ennoda kuda poranthathu mathiri than pappen but unakku antha mathiri ennaiya patha thonathaaaa.....</p>
+                      <p style={{ marginBottom: '15px' }}>Nan yaru mela brother nu pasham vachalum avanka yen pathile ennaiya vidu poranka nu enakku theriyala periyamma payan melaium neraiya pasham vachiruthen but avan marriage kku apram change akidan nan accept pannikiden</p>
+                      <p style={{ marginBottom: '15px' }}>Nan mani kida brother nu peshuven apram chithi pashanka ippam regin ivankala ellaru kidaium nan peshuren but yeppothume ivanka enkuda poranthurukalm nu nan nenaichathe illaaaa</p>
+                      <p style={{ marginBottom: '15px' }}>Unnaiya maddum than nee enkuda poranthurukalam ippamum ennoda kooda poranthathu mathiri than unnaiya nenaiken….</p>
+                      <p style={{ marginBottom: '15px' }}>Regin dayscholer family oda romba attach ana payan so avanukku ippam inka avan thaniya survey pannama ennaiya vachi comfort zone ah irukan .. avan ippothume ennoda life full ah enkuda travel panni varanum nu nan nenaichathu illaaa.. Bcoz avankukku ippam nan thevai paduren but inum konja days kku apram avane thaniya survey akum pothu nan thevai pada madennnnn</p>
+                      <p style={{ marginBottom: '15px' }}>Avlo than avanukkum enakkum irukka bond but nee enakku apti illa ennoda entire life full ah nee irukanum nu nan nenaiken</p>
+                      <p style={{ marginBottom: '15px' }}>Appa amma kku apram enakkunu yaru irukka nu keda nan unnaiya than sollanum</p>
+                      <p style={{ marginBottom: '15px' }}>Raja solluvan nan nenaicha periya family la marriage pannalam nu bcoz avanukku yethathu problem vantha antha big family members vanthu nipanka but ennaiya marriage panna yarume vara madanka thana<br/>Amma appa kku apram ennakunu pesha yarume irukka madanka thana intha mathiri lam yoshipenn</p>
+                      <p style={{ marginBottom: '15px' }}>Pavi pakkum pothu romba ashaiya irukkum avalukku yethu nadanthalum mama athai kku apram avaloda anna akka avalukaka varuvanka but enakkunu yarume irukka madanka nu nan neraiya time amma kida sollide feel panniruken but unnaiya pathukku apram than enakku antha feel pochi enakkum anna irukan enakaka vanthu avan nipan nuuu<br/>Raja kide solluven ennaiya thiduna nan ennoda anna v2 la poi irunthupenuuuu</p>
+                      <p style={{ marginBottom: '15px' }}>Nee naikka mathiri lam illa enakku ippamum yeppothume nee thevai thannnn<br/>Unnaiya thavara yaralaium ennaiya vachi samalikkah mudiyathuuuuuu</p>
+                      <p style={{ marginBottom: '15px' }}>Easy ah thukki podura alavukku than nan pasam unmela vachanaaa<br/>Ivlo pasham vachathu nan ivlokku irunthu aluvurathuka sasthu maaa.....</p>
                       <p style={{ marginBottom: '15px' }}>Gift ellame ashaiya vankunen courier panni vidanum nu nenaichennn but annaku msg pannen avanka reply pannala pona time um avanka reply pannala adikadi nan msg panni disturb pannah kudathunu nan kekkala gifts ellame enkida than irukkuuuu....</p>
-                      <p style={{ marginBottom: '15px' }}>Unakku ennoda feelings ellame nallave puriumm but unnoda vishaiyathula maddum purinchalum nee puriyatha mathiri aptiye viduruva la<br />Evlo solli kuduthu valathurukka but nee illama ennala thaniya yethume pannah mudiyala<br />athukunu nee yeppothume ennaiya pamper pannide irukanum nu sollala enakku support ah nee ninna kuda enaku athu pothum</p>
+                      <p style={{ marginBottom: '15px' }}>Unakku ennoda feelings ellame nallave puriumm but unnoda vishaiyathula maddum purinchalum nee puriyatha mathiri aptiye viduruva la<br/>Evlo solli kuduthu valathurukka but nee illama ennala thaniya yethume pannah mudiyala<br/>athukunu nee yeppothume ennaiya pamper pannide irukanum nu sollala enakku support ah nee ninna kuda enaku athu pothum</p>
                       <p style={{ marginBottom: '15px' }}>The world felt less messy when I was in your hands. Now, I don’t know how to handle the situations I face in life without you.</p>
                       <p style={{ marginBottom: '15px' }}>Enakku evlo thedum theriuma unnaiya..... room la vachi ellarum avanka anna kida peshuvanka daily nadanthatha share pannuvanka but nan maddum amaithiya irupennn</p>
                       <p style={{ marginBottom: '15px' }}>serious ah solluren raja kaka kuda nan ivlo suffer akala but unnala avlo akidenn enakke ippam than puriuthu nan ivlo pasham unmela vachirukenuuuu</p>
                       <p style={{ marginBottom: '15px' }}>Nan enna sonnalum, ithulaium nan 1000 words sollirupen but nee 10 words ah vachidu enkida peshuvaaaa ennoda anbu puriyathuuuu ennoda feelings um puriyathuuuu</p>
-                      <p style={{ marginBottom: '25px', fontSize: '1.3rem', fontWeight: 'bold', color: '#75C9C8', textAlign: 'center', letterSpacing: '0.05em' }}>MISSSSSSS YOUUUUUUUUU SASTHUUU MAAAAAAA……..</p>
-                      <p style={{ textAlign: 'center', fontStyle: 'italic', color: '#AEE4E1' }}>Once againnnn wish you many more happy returns of the day My Dearesttt Mah Sasthuuu maaa……</p>
+                      <p style={{ marginBottom: '15px' }}>Ini lam disturb pannah maden sasthu ma ippamum yen peshama irunthena nee again msg panna block panniruvenu sonna athan birthday vara msg panna kudathunu ennoda chat la unnaiya thedum pothu msg podu unakku msg pannama irunthennnn</p>
+                      <p style={{ marginBottom: '15px' }}>Nan unnaiya hurt pannanum nu yethume pannala sorryyyyyyyyy</p>
+                      <p style={{ marginBottom: '15px' }}>Unnoda kulanthaiya manithuuu viduuuuuuuuuu</p>
+                      <p style={{ marginBottom: '15px' }}>Enakku ennoda life full ah unnoda uyira podu vankanum avlo than ennoda wishhhh</p>
+                      <p style={{ marginBottom: '15px' }}>Nan ellame solliden ini nee enna decision yeduthalum yeduthuko but nan vacha pasham aptiye than irukummmm nee than stone la unakku kashdama irunthalum enkida pesha mada laaa…..</p>
+
+                      <div style={{ marginTop: '40px', paddingTop: '30px', textAlign: 'center', borderTop: '1px solid rgba(174, 228, 225, 0.3)' }}>
+                        <p style={{ marginBottom: '20px', fontSize: '1.4rem', fontWeight: 'bold', color: '#FFB6C1', letterSpacing: '1px' }}>REALLYYYY MISSSSSSS YOUUUUUUUUU SASTHUUU MAAAAAAA……..</p>
+                        <p style={{ fontSize: '1.2rem', color: '#B2EBF2', fontStyle: 'italic', margin: 0 }}>Once againnnn wish you many more happy returns of the day My Dearesttt Mah Sasthuuu maaa……</p>
+                      </div>
                     </div>
+                  )}
                 </div>
               )}
             </div>
