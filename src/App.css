@@ -1243,18 +1243,28 @@ html, body {
     padding: 10px;
   }
   
-  /* Hanging Polaroids Video Gallery */
+  /* Hanging Polaroids Video Gallery - Swipe Action for Mobile */
+  .hanging-gallery {
+    width: 100vw;
+  }
   .hanging-strings-container {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100vw;
+    padding: 20px 40px;
+    -webkit-overflow-scrolling: touch;
   }
   .hanging-string {
-    margin: 0 10px;
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    margin: 0;
   }
   .hanging-polaroid {
-    width: 130px;
-    height: 150px;
+    width: 160px;
+    height: 180px;
   }
   .polaroid-img-wrapper {
     height: 100px;
@@ -1270,10 +1280,10 @@ html, body {
 
   /* Stage 2 Mobile Support */
   .stage-2-fullscreen {
-    align-items: center; /* Center on mobile to avoid pushing off screen */
-    justify-content: flex-end; /* Push to bottom on mobile so face isn't completely blocked */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically instead of pushing to bottom */
     padding: 20px;
-    background-position: top center; /* Ensure face is visible at top if it's a portrait */
+    background-position: top center;
   }
   .decorated-wish {
     padding: 25px;
