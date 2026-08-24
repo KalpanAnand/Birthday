@@ -1224,13 +1224,13 @@ html, body {
   
   /* Book Layout Scaling */
   .book {
-    width: 90vw;
-    height: 120vw;
-    max-width: 380px;
-    max-height: 500px;
+    width: 48vw;
+    height: 70vw;
+    max-width: 250px;
+    max-height: 350px;
   }
   .book.open {
-    transform: translateX(15vw);
+    transform: translateX(24vw);
   }
   .scrapbook-intro .pop-in {
     padding: 15px !important;
