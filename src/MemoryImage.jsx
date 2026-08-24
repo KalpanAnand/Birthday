@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-export default function MemoryImage({ url, position, id, setActiveMemory }) {
+export default function MemoryImage({ url, position, id, setActiveMemory, isMobile }) {
   const meshRef = useRef();
   const texture = useTexture(url);
   const [hovered, setHovered] = useState(false);
@@ -32,14 +32,15 @@ export default function MemoryImage({ url, position, id, setActiveMemory }) {
   });
 
   // Calculate aspect ratio to avoid stretching
-  let w = 4;
-  let h = 4;
+  const maxDim = isMobile ? 2.2 : 4;
+  let w = maxDim;
+  let h = maxDim;
   if (texture && texture.image) {
     const aspect = texture.image.width / texture.image.height;
     if (aspect > 1) {
-      h = 4 / aspect;
+      h = maxDim / aspect;
     } else {
-      w = 4 * aspect;
+      w = maxDim * aspect;
     }
   }
 

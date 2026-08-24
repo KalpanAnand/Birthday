@@ -138,6 +138,7 @@ export default function TunnelScene({ memories, setActiveMemory, onEndReached })
             url={mem.url}
             position={mem.position}
             setActiveMemory={setActiveMemory}
+            isMobile={isMobile}
           />
         ))}
       </Canvas>
