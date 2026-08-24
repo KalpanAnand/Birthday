@@ -95,6 +95,7 @@ function CameraController({ maxZ, onEndReached }) {
 
 export default function TunnelScene({ memories, setActiveMemory, onEndReached }) {
   const maxZ = -(memories.length * SPACING);
+  const isMobile = window.innerWidth <= 768;
 
   // Distribute images along a hallway rather than a tube
   const positionedMemories = useMemo(() => {
@@ -106,7 +107,6 @@ export default function TunnelScene({ memories, setActiveMemory, onEndReached })
       const isLeft = index % 2 === 0;
       
       // X distance from center (approx 3 to 4 units away)
-      const isMobile = window.innerWidth <= 768;
       const xBase = isMobile ? (1.2 + Math.random() * 0.6) : (3 + Math.random() * 1.5);
       const x = isLeft ? -xBase : xBase;
       
