@@ -1304,8 +1304,11 @@ html, body {
   .book-cover-text {
     font-size: 1.5rem !important;
   }
+  .page-content-decoration {
+    padding: 15px !important;
+  }
   .book-text {
-    font-size: 0.85rem !important;
-    line-height: 1.5 !important;
+    font-size: 0.65rem !important;
+    line-height: 1.4 !important;
   }
 }
