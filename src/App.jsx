@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import confetti from 'canvas-confetti'
 import { Gift, Lock, Image, List, Heart, Video, Star, Compass } from 'lucide-react'
 import TunnelScene from './TunnelScene'
+import MobileTimeline from './MobileTimeline'
 import AudioController from './AudioController'
 import Overlay from './Overlay'
 import { memories } from './data'
@@ -741,11 +742,21 @@ function App() {
           {secretView === 'tunnel' && createPortal(
             <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9999, backgroundColor: 'black' }}>
               <AudioController audioUrl="/Un Koodavae Porakkanum Sister - D Imman (Karaoke Version)_320k.mp3" isPlaying={isTunnelStarted} />
-              <TunnelScene
-                memories={memories}
-                setActiveMemory={setActiveMemory}
-                onEndReached={() => setIsTunnelFinished(true)}
-              />
+              {window.innerWidth <= 768 ? (
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflowY: 'auto', zIndex: 1 }}>
+                  <MobileTimeline
+                    memories={memories}
+                    setActiveMemory={setActiveMemory}
+                    onEndReached={() => setIsTunnelFinished(true)}
+                  />
+                </div>
+              ) : (
+                <TunnelScene
+                  memories={memories}
+                  setActiveMemory={setActiveMemory}
+                  onEndReached={() => setIsTunnelFinished(true)}
+                />
+              )}
               <Overlay
                 hasStarted={isTunnelStarted}
                 setHasStarted={setIsTunnelStarted}
