@@ -1225,9 +1225,9 @@ html, body {
   /* Book Layout Scaling */
   .book {
     width: 48vw;
-    height: 70vw;
+    height: 85vw;
     max-width: 250px;
-    max-height: 350px;
+    max-height: 420px;
   }
   .book.open {
     transform: translateX(24vw);
@@ -1305,10 +1305,10 @@ html, body {
     font-size: 1.5rem !important;
   }
   .page-content-decoration {
-    padding: 15px !important;
+    padding: 10px !important;
   }
   .book-text {
-    font-size: 0.65rem !important;
-    line-height: 1.4 !important;
+    font-size: 0.55rem !important;
+    line-height: 1.35 !important;
   }
 }
