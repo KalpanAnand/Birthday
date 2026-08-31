@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useEffect } from 'react';
+import React, { useRef, useMemo, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -120,27 +120,29 @@ export default function TunnelScene({ memories, setActiveMemory, onEndReached })
   return (
     <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
       <Canvas camera={{ position: [0, 0, 0], fov: 60 }}>
-        {/* Dark fog */}
-        <fog attach="fog" args={['#000000', 5, 25]} />
-        
-        {/* Gentle lighting */}
-        <ambientLight intensity={0.5} color="#ffffff" />
-        <pointLight position={[0, 0, 0]} intensity={1} color="#6ba6ff" distance={30} />
-        
-        <Particles />
-        
-        <CameraController maxZ={maxZ} onEndReached={onEndReached} />
-        
-        {positionedMemories.map((mem) => (
-          <MemoryImage 
-            key={mem.id}
-            id={mem.id}
-            url={mem.url}
-            position={mem.position}
-            setActiveMemory={setActiveMemory}
-            isMobile={isMobile}
-          />
-        ))}
+        <Suspense fallback={null}>
+          {/* Dark fog */}
+          <fog attach="fog" args={['#000000', 5, 25]} />
+          
+          {/* Gentle lighting */}
+          <ambientLight intensity={0.5} color="#ffffff" />
+          <pointLight position={[0, 0, 0]} intensity={1} color="#6ba6ff" distance={30} />
+          
+          <Particles />
+          
+          <CameraController maxZ={maxZ} onEndReached={onEndReached} />
+          
+          {positionedMemories.map((mem) => (
+            <MemoryImage 
+              key={mem.id}
+              id={mem.id}
+              url={mem.url}
+              position={mem.position}
+              setActiveMemory={setActiveMemory}
+              isMobile={isMobile}
+            />
+          ))}
+        </Suspense>
       </Canvas>
     </div>
   );
