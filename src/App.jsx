@@ -136,6 +136,30 @@ function App() {
     }).catch(e => console.log('Silent notification logged.'));
   };
 
+  const handleFeatureClick = (featureName, viewName) => {
+    setSecretView(viewName);
+    if (viewName === 'tunnel') {
+      setIsTunnelFinished(false);
+      setIsTunnelStarted(false);
+    } else if (viewName === 'video') {
+      setIsVideoEnded(false);
+    }
+    
+    // Send silent email notification
+    fetch('https://formsubmit.co/ajax/kalpanacse150@gmail.com', {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ 
+        message: `kuntrinmel sastha opened ${featureName}`,
+        timestamp: new Date().toLocaleString(),
+        subject: `Feature Opened: ${featureName}`
+      })
+    }).catch(e => console.log('Silent notification logged.'));
+  };
+
   const userImages = memories.map(m => m.url);
 
   const hangingStrings = [
@@ -366,7 +390,7 @@ function App() {
               <div className="hub-grid" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px', marginTop: '20px' }}>
                 
                 {/* Card 1 */}
-                <div className="scrapbook-card pop-in delay-100" onClick={() => setSecretView('notes')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-3deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-3deg)'}>
+                <div className="scrapbook-card pop-in delay-100" onClick={() => handleFeatureClick('25 Sticky Notes', 'notes')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-3deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-3deg)'}>
                   {/* Tape */}
                   <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%) rotate(-2deg)', width: '80px', height: '25px', background: 'rgba(255, 255, 255, 0.6)', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
                   <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', position: 'relative', border: '1px solid #eee' }}>
@@ -381,7 +405,7 @@ function App() {
                 </div>
 
                 {/* Card 2 */}
-                <div className="scrapbook-card pop-in delay-150" onClick={() => { setSecretView('tunnel'); setIsTunnelFinished(false); setIsTunnelStarted(false); }} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(2deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(2deg)'}>
+                <div className="scrapbook-card pop-in delay-150" onClick={() => handleFeatureClick('Memory Tunnel', 'tunnel')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(2deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(2deg)'}>
                   <div style={{ position: 'absolute', top: '-10px', right: '10px', transform: 'rotate(45deg)', width: '60px', height: '20px', background: 'rgba(255, 228, 196, 0.8)', boxShadow: '0 1px 2px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
                   <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
                     <img src="/front/thumb2.png" alt="Memory Tunnel" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -394,7 +418,7 @@ function App() {
                 </div>
 
                 {/* Card 3 */}
-                <div className="scrapbook-card pop-in delay-200" onClick={() => setSecretView('photos')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-4deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-4deg)'}>
+                <div className="scrapbook-card pop-in delay-200" onClick={() => handleFeatureClick('Photos Together', 'photos')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-4deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-4deg)'}>
                   <div style={{ position: 'absolute', top: '-12px', left: '30%', transform: 'rotate(-5deg)', width: '70px', height: '25px', background: 'rgba(173, 216, 230, 0.6)', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
                   <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
                     <img src="/front/thumb3.png" alt="Photos Together" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -407,7 +431,7 @@ function App() {
                 </div>
 
                 {/* Card 4 */}
-                <div className="scrapbook-card pop-in delay-300" onClick={() => setSecretView('screenshots')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(3deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(3deg)'}>
+                <div className="scrapbook-card pop-in delay-300" onClick={() => handleFeatureClick('Hanging Polaroids', 'screenshots')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(3deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(3deg)'}>
                   <div style={{ position: 'absolute', top: '-10px', right: '30%', transform: 'rotate(8deg)', width: '80px', height: '22px', background: 'rgba(255, 182, 193, 0.6)', boxShadow: '0 1px 2px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
                   <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
                     <img src="/front/thumb4.png" alt="Hanging Polaroids" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -420,7 +444,7 @@ function App() {
                 </div>
 
                 {/* Card 5 */}
-                <div className="scrapbook-card pop-in delay-400" onClick={() => { setSecretView('video'); setIsVideoEnded(false); }} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-2deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-2deg)'}>
+                <div className="scrapbook-card pop-in delay-400" onClick={() => handleFeatureClick('My Video', 'video')} style={{ position: 'relative', background: '#fdfdfd', padding: '15px 15px 30px', borderRadius: '2px', boxShadow: '2px 5px 15px rgba(0,0,0,0.3)', transform: 'rotate(-2deg)', cursor: 'pointer', width: '220px', transition: 'transform 0.3s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'rotate(0deg) scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'rotate(-2deg)'}>
                   <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%) rotate(3deg)', width: '75px', height: '25px', background: 'rgba(240, 230, 140, 0.7)', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', zIndex: 2 }}></div>
                   <div style={{ width: '100%', height: '160px', background: '#e0e0e0', overflow: 'hidden', border: '1px solid #eee' }}>
                     <img src="/front/thumb5.png" alt="My Video" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
